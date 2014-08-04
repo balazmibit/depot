@@ -1,0 +1,33 @@
+<div id="product_list" >
+<h1>Výpis produktov</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Image url</th>
+      <th>Price</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr id="<%= cycle('list_line_odd', 'list_line_even') %>" >
+        <td><%= product.title %></td>
+        <td id="description"><%= product.description %></td>
+        <td><%= product.image_url %></td>
+        <td><%= product.price %></td>
+        <td><%= link_to 'Zobrazit', product %></td>
+        <td><%= link_to 'Upravit', edit_product_path(product) %></td>
+        <td><%= link_to 'Zmazat', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+<br>
+
+<%= link_to 'New Product', new_product_path %>
