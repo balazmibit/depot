@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Depot</title>
+  <title>Internetové kníhkupectvo Pragprog</title>
   <%= stylesheet_link_tag :depot %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-
-<%= yield %>
+<body id='store'>
+	<div id='banner'>
+		<%= image_tag('logo.png')%>
+		<%= @page_title || 'Pragmatická knižnica'%>
+	</div>
+	<div id='columns'>
+		<div id='side'>
+			<a href='#'>Úvod</a><br />
+			<a href='#'>Otázky</a><br />
+			<a href='#'>Novinky</a><br />
+			<a href='#'>Kontakt</a><br />
+		</div>
+		<div id='main'>
+			<%= yield %>
+		</div>
+	</div>
 
 </body>
 </html>
