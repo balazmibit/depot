@@ -1,7 +1,18 @@
-<h2>Nákupný košík</h2>
-<ul>
+<div class="cart_title">Nákupný košík</div>
+<table>
 	<% @cart.line_items.each do |item| %>
-		<li><%= item.product.title %></li>
+	<tr>
+		<td><%= item.quantity %> &times;</td>
+		<td><%= item.product.title %></td>
+		<td><%= number_to_currency(item.product.price, :locale => :sk) %>
+	</tr>
 	<% end %>
-</ul>
+	
+	<tr class="total_line">
+		<td colspan="2">Celkom</td>
+		<td class="total_cell"><%= number_to_currency(@cart.total_price, :locale => :sk) %></td>
+	</tr>
+</table>
+
+<%= button_to 'Vyprazdnit kosik', @cart, :method => :delete, data: {confirm: 'Naozaj chcete vyprazdnit kosik ?'}%>
 <%= link_to "Spat na zoznam poloziek", store_index_path %>
